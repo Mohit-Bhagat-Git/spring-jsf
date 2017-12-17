@@ -21,7 +21,7 @@ public class AdminController {
 	private AdminService service;
 	
 	@Autowired
-	AdminRepository adminRepository;
+	private AdminRepository adminRepository;
 	
 	@GetMapping("/admin")
     public List<Admin> getAllAdmin() {
