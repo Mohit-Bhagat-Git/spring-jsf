@@ -1,26 +1,41 @@
-package com.entity;
+package spring.model;
 
-public class Admin {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ADMIN")
+@NamedQueries({
+	@NamedQuery(name = "findAdmin", query = "SELECT e FROM Admin e WHERE e.userName = :user"),		
+	@NamedQuery(name = "loginAdmin", query = "select e from Admin e where e.userName=:user and e.password=:pass") })
+public class Admin implements Serializable{
 	
 	
 	/**For security reasons Admin id must not be generated from the code
 	 * One must provide this id if admin has to be updated.
 	 */
-	
-	private int adminId;
-	
-	private String userName;
-	
-	private String password;
-	
-	private String role;
-	
-	public Admin(int id, String name, String role){
-		this.adminId = id;
-		this.userName = name;
-		this.role = role;
+	public Admin(){
 		
 	}
+	
+	@Id
+	@Column(name="admin_id")
+	private int adminId;
+	
+	@Column(name="user_name")
+	private String userName;
+	
+	@Column(name="password")
+	private String password;
+	
+	@Column(name="role")
+	private String role;
 	public String getUserName() {
 		return userName;
 	}
@@ -80,10 +95,4 @@ public class Admin {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
-
 }

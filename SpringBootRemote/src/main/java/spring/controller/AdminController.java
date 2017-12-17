@@ -1,29 +1,34 @@
 package spring.controller;
 
 import java.util.Collection;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.entity.Admin;
-
+import spring.model.Admin;
+import spring.repository.AdminRepository;
 import spring.service.AdminService;
 
 @RestController
 @RequestMapping("/app")
-@ManagedBean
-@SessionScoped
 public class AdminController {
 	
 	@Autowired
 	private AdminService service;
 	
-	@RequestMapping("/readAll")
+	@Autowired
+	AdminRepository adminRepository;
+	
+	@GetMapping("/admin")
+    public List<Admin> getAllAdmin() {
+        return adminRepository.findAll();
+    }
+	
+	/*@GetMapping("/readAll.*")
 	public Collection<Admin> readAll(){
 		int i = service.getAll().size();
 		System.out.println(i +"Entries found");
@@ -32,8 +37,10 @@ public class AdminController {
 	
 	@RequestMapping(value="/{id}")
 	public Admin getByKey(@PathVariable int id){
-		return service.getByKey(id);
-	}
+		Admin admin =  service.getByKey(id);
+		System.out.println(admin.getAdminId());
+		return admin;
+	}*/
 	
 	@RequestMapping("/alive")
 	public String aliveCheck(){
