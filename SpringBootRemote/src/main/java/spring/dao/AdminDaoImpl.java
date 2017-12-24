@@ -1,4 +1,5 @@
 package spring.dao;
+/*package spring.dao;
 
 import java.util.List;
 
@@ -166,3 +167,4 @@ public class AdminDaoImpl implements AdminDao{
 	
 
 }
+*/
