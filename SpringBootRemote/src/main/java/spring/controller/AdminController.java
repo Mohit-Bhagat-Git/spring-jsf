@@ -39,9 +39,25 @@ public class AdminController {
 		return collection;
 	}
 	
-	@RequestMapping(value="/findById/{id}")
+	@GetMapping("/readByKeyword/{keyword}")// To map any page extension for example .xhtml, .jsf
+	public Collection<Admin> readAdminByCriteria(@PathVariable String keyword){
+		List<Admin> listAdmin = service.getAdminByKeyword(keyword);
+		System.out.println(listAdmin.size() +" Entries found");
+		Collection<Admin> collection = listAdmin;
+		return collection;
+	}
+	
+	@GetMapping("/findByRole/{role}")// To map any page extension for example .xhtml, .jsf
+	public Collection<Admin> findByRole(@PathVariable String role){
+		List<Admin> listAdmin = service.findByRole(role);
+		System.out.println(listAdmin.size() +" Entries found");
+		Collection<Admin> collection = listAdmin;
+		return collection;
+	}
+	
+	@RequestMapping(value="/getById/{id}")
 	public Admin getById(@PathVariable int id){
-		Admin admin =  service.getByKey(id);
+		Admin admin =  service.getById(id);
 		System.out.println(admin.getUserName());
 		return admin;
 	}

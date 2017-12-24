@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class AdminService {
     	return dummyDao.getAll();
     }
 
-	public Admin getByKey(int id) {
+	public Admin getById(int id) {
 		
 		return adminRepository.getOne(id);
 	}
@@ -80,6 +81,16 @@ public class AdminService {
 		finally{
 		}
 		return deleted;
+	}
+
+	public List<Admin> getAdminByKeyword(String keyword) {
+		String criteria = "from Admin where role=";
+		Query query  = em.createQuery(criteria+"'"+keyword+"'");
+		return query.getResultList();
+	}
+	
+	public List<Admin> findByRole(String keyword){
+		return (List<Admin>) adminRepository.findByRole(keyword);
 	}
 	
 }
