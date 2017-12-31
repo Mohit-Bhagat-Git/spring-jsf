@@ -1,0 +1,19 @@
+spring:
+	profile: dev, test
+eureka:
+	client:
+		registerWithEureka: true
+		fetchRegistry: true
+    	serviceUrl:
+      		defaultZone: http://127.0.0.1:8761/eureka/
+    instance:
+      hostname: localhost
+    	
+---
+ 	
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    hostname: ${APPLICATION_DOMAIN}
+    nonSecurePort: 80
