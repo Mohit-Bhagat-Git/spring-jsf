@@ -1,0 +1,12 @@
+spring:application:name: eureka-service
+
+server:
+   port: 1112	
+eureka:
+   instance:
+      prefer-ip-address: true
+   client:
+      registerWithEureka: false
+      fetchregistry: false
+   server:
+      waitTimeInMsWhenSyncEmpty: 0 
