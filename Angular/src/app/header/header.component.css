@@ -1,0 +1,35 @@
+.header_container{
+	display: grid;
+	grid-template-columns: 33.33% 33.33% auto;
+	grid-template-rows : 60px 120px;
+	grid-template-areas: 
+		"appLogo accountLogo cartLogo"
+		"offerBanner offerBanner offerBanner"
+	
+	
+}
+.appLogo{
+	grid-area: appLogo;
+	background: #ff8000;
+}
+.accountLogo{
+	grid-area: accountLogo;
+	background: #80ffff;
+}
+.cartLogo{
+	grid-area: cartLogo;
+	background: #00ff00;
+}
+.offerBanner{
+	grid-area: offerBanner;
+	background: #ffff80;
+	
+}
+
+.color-dark{
+	background: #2885C4;
+}
+
+.color-light{
+	background: #57B3F1;
+}
