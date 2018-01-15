@@ -68,7 +68,7 @@ public class AdminService {
 		return true;
 	}
 	
-	public boolean deleteAdminEm(Admin admin){
+	public boolean emDelete(Admin admin){
 		boolean deleted = false;
 		try{
 			em.remove(admin);
@@ -83,7 +83,7 @@ public class AdminService {
 		return deleted;
 	}
 
-	public List<Admin> getAdminByKeyword(String keyword) {
+	public List<Admin> emFindByKeyword(String keyword) {
 		String criteria = "from Admin where role=";
 		Query query  = em.createQuery(criteria+"'"+keyword+"'");
 		return query.getResultList();
@@ -91,6 +91,11 @@ public class AdminService {
 	
 	public List<Admin> findByRole(String keyword){
 		return (List<Admin>) adminRepository.findByRole(keyword);
+	}
+
+	public List<Admin> getAllByIdGreaterThan(int id) {
+		// TODO Auto-generated method stub
+		return adminRepository.findByAdminIdGreaterThan(id);
 	}
 	
 }

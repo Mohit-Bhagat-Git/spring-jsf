@@ -1,8 +1,8 @@
 spring:
   application:
-    name: eureka-service
+    name: eureka-service-db
 server:
-  port: 1111
+  port: 1112
 eureka:
   client:
     serviceUrl:

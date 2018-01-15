@@ -18,20 +18,14 @@ import spring.repository.AdminRepository;
 import spring.service.AdminService;
 
 @RestController
-@RequestMapping("/app")
+@RequestMapping("/admin")
 public class AdminController {
 	
 	@Autowired
 	private AdminService service;
 	
-	@GetMapping("/readDummyData")// To map any page extension for example .xhtml, .jsf
-	public Collection<Admin> readAllDummyData(){
-		
-		return  service.getAllDummyDataDao();
-	}
 	
-	
-	@GetMapping("/readAll")// To map any page extension for example .xhtml, .jsf
+	@GetMapping("/readAll")
 	public Collection<Admin> readAll(){
 		List<Admin> listAdmin = service.getAllAdmin();
 		System.out.println(listAdmin.size() +" Entries found");
@@ -39,20 +33,25 @@ public class AdminController {
 		return collection;
 	}
 	
-	@GetMapping("/readByKeyword/{keyword}")// To map any page extension for example .xhtml, .jsf
+	@GetMapping("/emReadByKeyword/{keyword}")
 	public Collection<Admin> readAdminByCriteria(@PathVariable String keyword){
-		List<Admin> listAdmin = service.getAdminByKeyword(keyword);
+		List<Admin> listAdmin = service.emFindByKeyword(keyword);
 		System.out.println(listAdmin.size() +" Entries found");
 		Collection<Admin> collection = listAdmin;
 		return collection;
 	}
 	
-	@GetMapping("/findByRole/{role}")// To map any page extension for example .xhtml, .jsf
+	@GetMapping("/findByRole/{role}")
 	public Collection<Admin> findByRole(@PathVariable String role){
 		List<Admin> listAdmin = service.findByRole(role);
 		System.out.println(listAdmin.size() +" Entries found");
 		Collection<Admin> collection = listAdmin;
 		return collection;
+	}
+	
+	@RequestMapping(value="/getAllByIdGreaterThan/{id}")
+	public Collection<Admin> getAllByIdGreaterThan(@PathVariable int id){
+		return service.getAllByIdGreaterThan(id);
 	}
 	
 	@RequestMapping(value="/getById/{id}")
@@ -82,9 +81,9 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value = "/deleteAdminEm", method=RequestMethod.DELETE)
+	@RequestMapping(value = "/emDelete", method=RequestMethod.DELETE)
 	public boolean deleteEm(@RequestBody Admin admin){
-		boolean deleted =  service.deleteAdminEm(admin);
+		boolean deleted =  service.emDelete(admin);
 		return deleted;
 	}
 	
@@ -97,7 +96,7 @@ public class AdminController {
 	
 	@RequestMapping("/alive")
 	public String aliveCheck(){
-		String message = "Application is working fine!!";
+		String message = "Admin Controller is alive!!";
 		System.out.println(message);
 		return message;
 	}
