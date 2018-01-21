@@ -1,3 +1,57 @@
-<p>
-  product works!
-</p>
+<div class="container">
+	<h1>Products</h1>
+	<!-- <div class="prod_lists"> 
+		<ul class="gallery-grid">
+			<li *ngFor="let product of productsV">
+
+				<div class="panel panel-default">
+					<div class="panel-heading">{{product.productBrand}}</div>
+					<div class="panel-body">
+						<div>
+						<img class="prod_image" src="{{imageLocation}}/{{product.productCategory}}/{{product.imageName}}.img">
+						</div>
+						<div class="prod_name">
+							<span>{{product.productName}}</span>
+						</div>
+						<div class="prod_price">
+							<span>{{product.productSize}} grams</span><span>Rs.
+								{{product.productPrice}}</span>
+						</div>
+					</div>
+					<div class="panel-footer">Panel Footer</div>
+					<div class="separator"></div>
+				</div>
+			</li>
+
+		</ul>
+	</div>-->
+	<!-- Myntra style -->
+	<div class="row-base">
+		<ul class="result-base">
+			<li *ngFor="let product of productsV" class="product-base">
+				
+				<div class="product-productMetaInfo">
+					<div>
+						<img class="product-thumb"
+							src="{{imageLocation}}/{{product.productCategory}}/{{product.imageName}}.img">
+					</div>
+					<div class="product-brand">{{product.productBrand}}</div>
+					<div class="product-product">
+						<span>{{product.productName}}</span>
+					</div>
+					<div class="product-price">
+						<span>{{product.productSize}} grams</span>
+					</div>
+					<div class="product-sizes">
+						<span>Rs. {{product.productPrice}}</span>
+					</div>
+					<div class="panel-footer">Panel Footer</div>
+				</div>
+
+			</li>
+
+		</ul>
+	</div>
+
+</div>
+

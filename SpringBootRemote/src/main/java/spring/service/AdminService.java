@@ -68,6 +68,10 @@ public class AdminService {
 		return true;
 	}
 	
+	/**
+	 * @param admin
+	 * @return This method executes even an entity is not present in db
+	 */
 	public boolean emDelete(Admin admin){
 		boolean deleted = false;
 		try{

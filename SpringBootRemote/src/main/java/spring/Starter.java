@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
-@EnableEurekaClient
+//@EnableEurekaClient
 @SpringBootApplication
 //@ComponentScan(basePackages = "spring")
 public class Starter {

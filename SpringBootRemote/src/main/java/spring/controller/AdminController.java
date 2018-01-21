@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,12 +50,12 @@ public class AdminController {
 		return collection;
 	}
 	
-	@RequestMapping(value="/getAllByIdGreaterThan/{id}")
+	@GetMapping(value="/getAllByIdGreaterThan/{id}")
 	public Collection<Admin> getAllByIdGreaterThan(@PathVariable int id){
 		return service.getAllByIdGreaterThan(id);
 	}
 	
-	@RequestMapping(value="/getById/{id}")
+	@GetMapping(value="/getById/{id}")
 	public Admin getById(@PathVariable int id){
 		Admin admin =  service.getById(id);
 		System.out.println(admin.getUserName());
@@ -74,27 +75,27 @@ public class AdminController {
 	 * 
 	 * As of now solution could be to use entity manager directly inside Service class.
 	 */
-	@RequestMapping(value = "/deleteAdmin", method=RequestMethod.DELETE)
+	@DeleteMapping(value = "/deleteAdmin")
 	public boolean delete(@RequestBody Admin admin){
 		boolean deleted =  service.deleteAdmin(admin);
 		return deleted;
 	}
 	
 	
-	@RequestMapping(value = "/emDelete", method=RequestMethod.DELETE)
+	@DeleteMapping(value = "/emDelete")
 	public boolean deleteEm(@RequestBody Admin admin){
 		boolean deleted =  service.emDelete(admin);
 		return deleted;
 	}
 	
-	@RequestMapping(value = "/deleteAdminById", method=RequestMethod.DELETE)
+	@DeleteMapping(value = "/deleteAdminById")
 	public boolean deleteAdminbyId(@RequestBody Admin admin){
 		boolean deleted =  service.deleteAdminbyId(admin);
 		return deleted;
 	}
 	
 	
-	@RequestMapping("/alive")
+	@GetMapping("/alive")
 	public String aliveCheck(){
 		String message = "Admin Controller is alive!!";
 		System.out.println(message);

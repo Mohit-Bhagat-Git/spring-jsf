@@ -14,6 +14,10 @@ import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
 
 import {DataService} from './services/data.service';
+import {ProductService } from './product/product.service';
+
+
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
@@ -30,9 +34,10 @@ import {DataService} from './services/data.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
-  providers: [DataService],
+  providers: [DataService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

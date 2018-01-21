@@ -12,5 +12,7 @@ public class HostController {
 		
 		return "host is alive";
 	}
+	
+	
 
 }
