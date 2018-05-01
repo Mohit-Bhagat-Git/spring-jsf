@@ -1,0 +1,5 @@
+Punjab:India:M:INR:40000
+Punjab:India:M:INR:10000
+Punjab:India:M:INR:30000
+Hong Kong:HONG KONG:M:HKD:30000
+
