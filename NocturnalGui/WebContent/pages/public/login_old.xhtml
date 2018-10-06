@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<pm:page>
+	<p:outputLabel for="login_userName" value="#{lbl['userName']}"></p:outputLabel>
+	<p:inputText id="login_userName"></p:inputText>
+	<p:outputLabel for="login_password" value="#{lbl['pass']}"></p:outputLabel>
+	<p:password id="login_password"></p:password>
+	<p:commandButton value="Login"></p:commandButton>
+	</pm:page>
+</h:body>
+
+</html>

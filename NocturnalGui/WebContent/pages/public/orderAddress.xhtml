@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+	<pm:page id="custOrderAddr">
+		<pm:header title="ADDRESS" swatch="b">
+			<p:button outcome="cart.xhtml?faces-redirect=true" value="Back"
+				icon="ui-icon-arrow-l" styleClass="ui-btn-left ui-btn-inline" />
+		</pm:header>
+		<pm:content>
+			<h:form id="addrCustForm">
+				<p:growl id="addrCust"></p:growl>
+
+				<p:dataTable id="allAddr" var="orderAddr"
+					value="#{customerDetails.addressSet}"
+					selection="#{customerDetails.deliveryAddress}"
+					rowKey="#{orderAddr.addressId}" selectionMode="single">
+					<f:facet name="header">
+           				 Select Address
+       				 </f:facet>
+					<p:ajax event="rowSelect" listener="#{customerDetails.onRowSelect}"
+						update="@form:addrCust" />
+					<!-- <p:column selectionMode="single" style="width:16px;text-align:center"> -->
+
+					<!-- 	</p:column> -->
+					<p:column headerText="Contact">
+						<h:outputText value="#{customerDetails.customerFirstName}" /><br/>
+						<h:outputText value="#{customerDetails.mobileNumber}" />
+					</p:column>
+					<p:column headerText="Your delivery Address">
+						<h:outputText value="#{orderAddr.pinCode}" /><br/>
+						<h:outputText value="#{orderAddr.completeAddress}" /><br/>
+						
+						<h:outputText value="#{orderAddr.locality}" /><br/>
+						<h:outputText value="#{orderAddr.city}" /><br/>
+						<h:outputText value="#{orderAddr.state}" /><br/>
+						
+					</p:column> 
+				</p:dataTable>
+				<p:commandButton value="CONFIRM" action="orderReview.xhtml?faces-redirect=true"></p:commandButton>
+			</h:form>
+		</pm:content>
+	</pm:page>
+
+
+
+</h:body>
+
+</html>

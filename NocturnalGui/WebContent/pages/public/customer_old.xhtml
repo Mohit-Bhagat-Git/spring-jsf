@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<!-- <ui:composition template="/templates/header_footer.xhtml">
+
+<ui:define name="defaultHeader">
+
+
+</ui:define>
+<ui:define name="cartBody"></ui:define>
+<ui:define name="defaultBody">
+	<h:form>
+	<pm:page id="first">
+		<pm:header title="Login/Register" swatch="b">
+			<p:panelGrid columns="2" style="margin-top: 7px; float:auto">
+			<p:commandButton action="cart.xhtml?faces-redirect=true" value="Back"
+				icon="ui-icon-arrow-l" styleClass="ui-btn-left ui-btn-inline" />
+			</p:panelGrid>
+		</pm:header>
+		
+		<p:button value="Login" outcome="pm:custLoginPage?transition=slide"></p:button>
+		<p:button value="Register" outcome="pm:custRegister?transition=slide"></p:button>
+	</pm:page>
+</h:form>
+</ui:define>
+
+
+
+</ui:composition> -->
+<h:head>
+
+</h:head>
+
+<h:body>
+	<pm:page id="first">
+		<pm:header title="Login/Register" swatch="b">
+			<p:panelGrid columns="2" style="margin-top: 7px; float:auto">
+			<p:commandButton action="cart.xhtml?faces-redirect=true" value="Back"
+				icon="ui-icon-arrow-l" styleClass="ui-btn-left ui-btn-inline" />
+				<p:commandLink
+				styleClass="ui-btn-inline"
+						style="height: 70px;
+						
+    				width: 90px;
+    				font-size: 12.5px;
+    				padding-top:0px
+   					background-color: cadetblue;
+   					font-size:12.5px;
+   					float:right;"
+						action="cart.xhtml?faces-redirect=true">
+						<h:graphicImage style="height:82px;width: 90px;"
+							name="images/icons/cart_icon.png"></h:graphicImage>
+						<!-- <b class="fa fa-shopping-cart" style="font-size: 64.5px;"></b> -->
+					</p:commandLink>
+					</p:panelGrid>
+		</pm:header>
+		
+		<p:button value="Login" outcome="pm:custLoginPage?transition=slide"></p:button>
+		<p:button value="Register" outcome="pm:custRegister?transition=slide"></p:button>
+	</pm:page>
+	<pm:page id="custLoginPage">
+		<pm:header title="Login Page" swatch="b">
+			<p:button outcome="pm:first" value="Back" icon="ui-icon-arrow-l"
+				styleClass="ui-btn-left ui-btn-inline" />
+		</pm:header>
+		<pm:content>
+			<h:form id="loginCust">
+			<p:growl id="custLoginForm"></p:growl>
+				<p:outputLabel for="customerMobile"
+					value="#{lbl['customerMobile/id']}"></p:outputLabel>
+				<p:inputText id="customerMobile"
+					value="#{customerDetails.mobileNumber}"></p:inputText>
+
+				<p:outputLabel for="customerPass" value="#{lbl['customerPass']}"></p:outputLabel>
+				<p:password id="customerPass" value="#{customerDetails.password}"></p:password>
+				
+				
+				<h:panelGroup id="doBtnPG">
+					<p:commandButton value="#{lbl['login']}"
+						actionListener="#{actions.login}"
+						rendered="#{!customerDetails.isLoggedIn}" update="doBtnPG custLoginForm"></p:commandButton>
+
+					<p:commandButton value="#{lbl['logout']}"
+						actionListener="#{actions.logout}"
+						rendered="#{customerDetails.isLoggedIn}"  update="doBtnPG custLoginForm"></p:commandButton>
+				</h:panelGroup>
+			</h:form>
+		</pm:content>
+	</pm:page>
+
+
+	<pm:page id="custRegister">
+
+		<pm:header title="Registration Form" swatch="b">
+			<p:button outcome="pm:first" value="Back" icon="ui-icon-arrow-l"
+				styleClass="ui-btn-left ui-btn-inline" />
+		</pm:header>
+		<pm:content>
+			<h:form id="newCustomer">
+				<p:growl id="custGrowl" sticky="true" showDetail="true"></p:growl>
+
+				<p:outputLabel for="customerFirstName"
+					value="#{lbl['customerFirstName']}"></p:outputLabel>
+				<p:inputText id="customerFirstName"
+					value="#{customerDetails.customerFirstName}"></p:inputText>
+
+				<p:outputLabel for="customerLastName"
+					value="#{lbl['customerLastName']}"></p:outputLabel>
+				<p:inputText id="customerLastName"
+					value="#{customerDetails.customerLastName}"></p:inputText>
+
+				<p:outputLabel for="mobile" value="#{lbl['mobileNumber']}"></p:outputLabel>
+				<p:inputText id="mobile" value="#{customerDetails.mobileNumber}"></p:inputText>
+
+				<p:outputLabel for="password" value="#{lbl['createPassword']}"></p:outputLabel>
+				<p:inputText id="password" value="#{customerDetails.password}"></p:inputText>
+
+				<p:outputLabel for="emailId" value="#{lbl['emailId']}"></p:outputLabel>
+				<p:inputText id="emailId" value="#{customerDetails.emailId}"></p:inputText>
+
+
+				<p:outputLabel for="houseNumber" value="#{lbl['houseNumber']}"></p:outputLabel>
+				<p:inputText id="houseNumber" value="#{customerAddress.houseNumber}"></p:inputText>
+
+				<p:outputLabel for="completeAddress"
+					value="#{lbl['completeAddress']}"></p:outputLabel>
+				<p:inputTextarea id="completeAddress"
+					value="#{customerAddress.completeAddress}"></p:inputTextarea>
+
+				<p:outputLabel for="street" value="#{lbl['street']}"></p:outputLabel>
+				<p:inputText id="street" value="#{customerAddress.street}"></p:inputText>
+
+				<p:outputLabel for="landMark" value="#{lbl['landMark']}"></p:outputLabel>
+				<p:inputText id="landMark" value="#{customerAddress.landMark}"></p:inputText>
+
+				<p:outputLabel for="locality" value="#{lbl['locality']}"></p:outputLabel>
+				<p:inputText id="locality" value="#{customerAddress.locality}"></p:inputText>
+
+				<p:outputLabel for="city" value="#{lbl['city']}"></p:outputLabel>
+				<p:inputText id="city" value="#{customerAddress.city}"></p:inputText>
+
+				<p:outputLabel for="state" value="#{lbl['state']}"></p:outputLabel>
+				<p:inputText id="state" value="#{customerAddress.state}"></p:inputText>
+
+				<h:outputLabel for="pincode" value="#{lbl['pincode']}"></h:outputLabel>
+				<p:inputText id="pincode" value="#{customerAddress.pinCode}"></p:inputText>
+
+				<p:commandButton value="#{lbl['register']}"
+					actionListener="#{actions.saveCustomerDetails}" update="custGrowl"></p:commandButton>
+
+			</h:form>
+		</pm:content>
+	</pm:page>
+</h:body>
+
+</html>

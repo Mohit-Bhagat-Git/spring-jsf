@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head>
+	<h:outputStylesheet name="main.css" library="css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<style>
+.grid div:nth-child(even) {
+	background-color: red;
+}
+
+.grid div:nth-child(odd) {
+	background-color: green;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 20% 1fr;
+}
+
+.logmod {
+	display: block;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 1;
+	background: rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.logmod__wrapper {
+	display: block;
+	background: #FFF;
+	position: relative;
+	max-width: 550px;
+	border-radius: 4px;
+	box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
+	margin: 120px auto;
+}
+
+.logmod__container {
+	overflow: hidden;
+	width: 100%;
+}
+</style>
+</h:head>
+
+<h:body>
+	<div class="logmod">
+		<div class="logmod__wrapper">
+			<div class="logmod__container">
+				<p:tabView>
+					<p:tab title="Login">
+						<p:panelGrid columns="2" cellpadding="10">
+							<p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+							<h:outputText value="The story begins as Don Vito Corleone..." />
+						</p:panelGrid>
+					</p:tab>
+					<p:tab title="Register">
+						<p:panelGrid columns="2" cellpadding="10">
+							<p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+							<h:outputText value="Francis Ford Coppola's legendary..." />
+						</p:panelGrid>
+					</p:tab>
+				</p:tabView>
+			</div>
+		</div>
+	</div>
+</h:body>
+
+</html>

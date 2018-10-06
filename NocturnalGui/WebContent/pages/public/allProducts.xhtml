@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+<!-- <f:metadata>
+    <f:viewParam name="foo" value="#{bean.foo}" />
+    <f:viewAction action="#{dataGridView.readAllProducts}" />
+</f:metadata> -->
+<ui:composition template="/templates/header_footer.xhtml">
+	<ui:define name="defaultHeader">
+
+		<h:form id="searchFrom">
+		<p:growl id="mohit" ></p:growl>
+			<p:inputText id="searchBar" style="font-size:14px;font-color:grey"
+				value="#{actions.searchKey}">
+				<p:watermark for="searchBar" value="what you want to see ?"></p:watermark>
+			</p:inputText>
+			<h:commandButton id="searchButton" value="#{lbl['search']}"
+				actionListener="#{actions.searchKeyword}" update="@form:allProducts"></h:commandButton>
+		</h:form>
+
+	</ui:define>
+	<ui:define name="defaultBody">
+
+		<!-- <pm:page id="customerListing"> -->
+		<h:form id="prodForm">
+
+			<p:dataGrid id="allProducts" var="guiProduct"
+				value="#{dataGridView.setProducts}" columns="4" paginator="true"
+				style="align:left"
+				rows="9">
+				<f:facet name="header">
+         			   Choose Any
+        		</f:facet>
+
+				<p:panel header="#{guiProduct.productBrand}"
+					style="text-align:center;background-color:#1d1d1d">
+					<!-- <p:panel Grid columns="1" style="width:100%"> -->
+				<div class="allProdGrid">
+					<div class="prodImageDiv">
+						<p:graphicImage class="prodImage"
+							name="images/#{guiProduct.productCategory}/#{guiProduct.productId}.img" />
+					</div>
+					<div class="prodNameDiv">
+						<h:outputText value="#{guiProduct.productName}" />
+					</div>
+					<div class="prodPriceDiv">
+						<h:outputText value="Price: ₹#{guiProduct.productPrice}"></h:outputText>
+					</div>
+					<div class="prodSizeDiv">
+						<h:outputText value="Size: #{guiProduct.productSize} grams"></h:outputText>
+					</div>
+						<!-- <p:panelGrid columns="2" cellpadding="5">
+								<h:outputText value="Counter: " />
+								<h:outputText id="output2" value="#{guiProduct.productQuantity}" />
+							</p:panelGrid>
+							<p:commandButton onclick="myFunction()"></p:commandButton>
+							<p:commandButton value="Count"
+								actionListener="#{actions.increaseProdQuantity}"
+								update="@form incrementForm:output1" /> -->
+								
+					<div class="prodQtyLblDiv">	
+							<span class="prodQtyLblSpan">
+								<h:outputLabel value="Qty: "></h:outputLabel>
+							</span>
+					</div>
+					<div class="prodQtyDiv">
+								<h:inputText value="#{guiProduct.productQuantity}"></h:inputText>
+								
+					</div>
+					<div class="addCartBtnDiv">
+								<p:commandButton value="ADD to cart" actionListener="#{actions.addToCart(guiProduct)}"></p:commandButton>
+					</div>
+					<div class="prodSrchDiv">
+						<p:commandButton update="@form:productDetail"
+							oncomplete="PF('productDialog').show()" icon="ui-icon-search"
+							styleClass="ui-btn-inline">
+							<h:outputText styleClass="ui-icon ui-icon-search"
+								style="margin:0 auto;" />
+							<f:setPropertyActionListener value="#{guiProduct}"
+								target="#{dataGridView.selectedProduct}" />
+						</p:commandButton>
+					</div>
+				</div>
+					<!-- </p:panelGrid> -->
+				</p:panel>
+
+			</p:dataGrid>
+
+			<p:dialog header="product Info" widgetVar="productDialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="productDetail">
+					<p:panelGrid columns="2"
+						rendered="#{not empty dataGridView.selectedProduct}"
+						styleClass="ui-product-detail">
+						<f:facet name="header">
+						image here 
+							<p:graphicImage
+								name="images/#{dataGridView.selectedProduct.productCategory}/#{dataGridView.selectedProduct.productId}.gif" />
+						</f:facet>
+						<p:graphicImage
+								name="images/#{dataGridView.selectedProduct.productCategory}/#{dataGridView.selectedProduct.productId}.gif" />
+						
+						<h:outputText value="Price" />
+						<h:outputText
+							value=" = #{dataGridView.selectedProduct.productPrice}" />
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+
+		</h:form>
+		
+		<!-- <h:form id="incrementForm">
+							<p:panelGrid columns="2" cellpadding="5">
+								<h:outputText value="Counter: " />
+								<h:outputText id="output1" value="#{guiProduct.productQuantity}" />
+							</p:panelGrid>
+
+							<p:commandButton value="Count"
+								actionListener="#{actions.increaseProdQuantity}"
+								update="@form incrementForm:output1" />
+						</h:form> -->
+		<!-- </pm:page> -->
+	</ui:define>
+	
+	<ui:define name="cartBody">
+	<!-- <h:form id="cartForm">
+	<p:dataGrid id="cartProd" var ="selProd" value="#{dataGridView.selProdList}" columns="1" paginator="true"
+				rows="10"
+				
+				>
+				<div id="line" >
+				<p:panel header="#{selProd.productName}">
+				<p:panelGrid columns="1" style="width:100%">
+				<p:graphicImage style="height:250px;width:240px;"
+							name="images/#{selProd.productCategory}/#{selProd.productId}.gif" />
+				<h:outputText value="#{productLbl[selProd.productName]}" />
+				
+				<h:inputText value="#{selProd.productQuantity}"></h:inputText>
+								<p:commandButton value="Change" actionListener="#{actions.saveCurrProdQuantity(selProd)}"></p:commandButton>
+				
+				
+				</p:panelGrid>
+				</p:panel>
+	</div>
+	</p:dataGrid>
+	</h:form> -->
+	
+	</ui:define>
+</ui:composition>
+
+</html>

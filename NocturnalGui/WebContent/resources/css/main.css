@@ -1,0 +1,223 @@
+@media screen and (min-width: 736px) {
+	body {
+		background-color: pink;
+	}
+	.grid div {
+		background-color: #1d1d1d;
+	}
+	
+	.grid {
+		display: grid;
+		justify-content: space-between;
+		grid-template-columns: 76% 12% 12%;;
+		grid-template-rows: 1fr 1fr;
+		grid-template-areas: "homeButton account cart"
+			"offerBanner offerBanner offerBanner";
+	}
+	.homeButton {
+		grid-area: homeButton;
+	}
+	.account {
+		grid-area: account;
+		
+	}
+	.cart {
+		grid-area: cart;
+	}
+	.offerBanner {
+		grid-area: offerBanner;
+	}
+	.cartImage {
+		height: 82px;
+		width: 90px;
+		background-color: #1d1d1d
+	}
+	.cartItems {
+		grid-area: cartItems;
+		font-size: .9rem;
+		color: #f6f6f6;
+		position: absolute;
+		top: .8%;
+		right: 30px;
+		height: 22px;
+		width: 22px;
+		background: #f8631a;
+		text-align: center;
+		border-radius: 50%;
+		line-height: 1.5rem;
+		border: 1px solid #fff;
+	}
+	.prodImage {
+		height: 170px;
+		width: 170px;
+	}
+	.cartItems {
+		grid-area: cartItems;
+		font-size: .9rem;
+		color: #f6f6f6;
+		position: absolute;
+		top: .8%;
+		right: 30px;
+		height: 22px;
+		width: 22px;
+		background: #f8631a;
+		text-align: center;
+		border-radius: 50%;
+		line-height: 1.5rem;
+		border: 1px solid #fff;
+	}
+	
+	
+	.allProdGrid {
+		display: grid;
+		grid-template-columns: 50% 50%;
+		grid-template-rows: 183px 47px 25px 25px 57px 50px;
+		grid-template-areas: "prodImageDiv prodImageDiv"
+			"prodNameDiv prodNameDiv" "prodPriceDiv prodPriceDiv"
+			"prodSizeDiv prodSizeDiv" "prodQtyLblDiv prodQtyDiv"
+			"addCartBtnDiv addCartBtnDiv" "prodSrchDiv prodSrchDiv";
+	}
+	.prodImageDiv {
+		padding-left: 20px;
+		grid-area: prodImageDiv;
+	}
+	.prodPriceDiv {
+		grid-area: prodPriceDiv;
+		text-align: center;
+	}
+	.prodSizeDiv {
+		grid-area: prodSizeDiv;
+		text-align: center;
+	}
+	.prodQtyLblDiv {
+		grid-area: prodQtyLblDiv;
+		text-align: right;
+   		padding-right: 34px;
+	}
+	.prodQtyLblSpan{
+		position: absolute;padding-top: 20.2px;
+	}
+	.addCartBtnDiv {
+		grid-area: addCartBtnDiv;
+		padding-left: 20%;
+    	padding-right: 20%;
+	}
+	.prodQtyDiv {
+		grid-area: prodQtyDiv;
+		padding-right: 62%;
+	}
+	.prodSrchDiv {
+		grid-area: prodSrchDiv;
+	}
+	.prodNameDiv {
+		grid-area: prodNameDiv;
+		font-weight: bolder;
+	}
+	.prodPanel {
+		height: 400px;
+		position: relative;
+	}
+}
+
+@media screen and (max-width: 735px) {
+	.cartImage {
+		height: 82px;
+		width: 90px;
+		background-color: #1d1d1d
+	}
+	.prodImageDiv {
+		height: 170px;
+		width: 170px;
+	}
+	.cartItems {
+		grid-area: cartItems;
+		font-size: .9rem;
+		color: #f6f6f6;
+		position: absolute;
+		top: .8%;
+		right: 30px;
+		height: 22px;
+		width: 22px;
+		background: #f8631a;
+		text-align: center;
+		border-radius: 50%;
+		line-height: 1.5rem;
+		border: 1px solid #fff;
+	}
+	body {
+		background-color: pink;
+	}
+	.grid div:nth-child(even) {
+		background-color: red;
+	}
+	.grid div:nth-child(odd) {
+		background-color: green;
+	}
+	.grid {
+		display: grid;
+		justify-content: space-between;
+		grid-template-columns:20% 20% 20%;
+		grid-template-rows: 1fr 1fr;
+		grid-template-areas: "homeButton account cart"
+			"offerBanner offerBanner offerBanner";
+		
+	}
+	.homeButton {
+		grid-area: homeButton;
+	}
+	.account {
+		grid-area: account;
+	}
+	.cart {
+		grid-area: cart;
+	}
+	.offerBanner {
+		grid-area: offerBanner;
+	}
+	
+	
+	.allProdGrid {
+		display: grid;
+		grid-template-columns: 40% 60%;
+		grid-template-rows: 183px 47px 25px 25px 57px 50px;
+		grid-template-areas: "prodImageDiv prodImageDiv"
+			"prodNameDiv prodNameDiv" "prodPriceDiv prodPriceDiv"
+			"prodSizeDiv prodSizeDiv" "prodQtyLblDiv prodQtyDiv"
+			"addCartBtnDiv addCartBtnDiv" "prodSrchDiv prodSrchDiv";
+	}
+	.prodImageDiv {
+		grid-area: prodImageDiv;
+	}
+	.prodPriceDiv {
+		grid-area: prodPriceDiv;
+		text-align: left;
+	}
+	.prodSizeDiv {
+		grid-area: prodSizeDiv;
+		text-align: left;
+	}
+	.prodQtyLblDiv {
+		grid-area: prodQtyLblDiv;
+		text-align: center;
+	}
+	.addCartBtnDiv {
+		grid-area: addCartBtnDiv;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.prodQtyDiv {
+		grid-area: prodQtyDiv;
+		padding-right: 51px;
+	}
+	.prodSrchDiv {
+		grid-area: prodSrchDiv;
+	}
+	.prodNameDiv {
+		grid-area: prodNameDiv;
+		font-weight: bolder;
+	}
+	.prodPanel {
+		height: 400px;
+		position: relative;
+	}
+}

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head>
+	<h:outputStylesheet name="css/main.css" />
+	<style>
+@media screen and (min-width: 736px) {
+	body {
+		background-color: pink;
+	}
+	.grid div:nth-child(even) {
+		background-color: #1d1d1d;
+	}
+	.grid div:nth-child(odd) {
+		background-color: #1d1d1d;
+	}
+	
+	.grid {
+		display: grid;
+		justify-content: space-between;
+		grid-template-columns: 76% 12% 12%;;
+		grid-template-rows: 1fr 1fr;
+		grid-template-areas: "homeButton account cart"
+			"offerBanner offerBanner offerBanner";
+	}
+	.homeButton {
+		grid-area: homeButton;
+	}
+	.account {
+		grid-area: account;
+		
+	}
+	.cart {
+		grid-area: cart;
+	}
+	.offerBanner {
+		grid-area: offerBanner;
+	}
+	.cartImage {
+		height: 82px;
+		width: 90px;
+		background-color: #1d1d1d
+	}
+	.cartItems {
+		grid-area: cartItems;
+		font-size: .9rem;
+		color: #f6f6f6;
+		position: absolute;
+		top: .8%;
+		right: 30px;
+		height: 22px;
+		width: 22px;
+		background: #f8631a;
+		text-align: center;
+		border-radius: 50%;
+		line-height: 1.5rem;
+		border: 1px solid #fff;
+	}
+	.prodImage {
+		height: 170px;
+		width: 170px;
+	}
+	.cartItems {
+		grid-area: cartItems;
+		font-size: .9rem;
+		color: #f6f6f6;
+		position: absolute;
+		top: .8%;
+		right: 30px;
+		height: 22px;
+		width: 22px;
+		background: #f8631a;
+		text-align: center;
+		border-radius: 50%;
+		line-height: 1.5rem;
+		border: 1px solid #fff;
+	}
+	
+	
+	.allProdGrid {
+		display: grid;
+		grid-template-columns: 50% 50%;
+		grid-template-rows: 183px 47px 25px 25px 57px 50px;
+		grid-template-areas: "prodImageDiv prodImageDiv"
+			"prodNameDiv prodNameDiv" "prodPriceDiv prodPriceDiv"
+			"prodSizeDiv prodSizeDiv" "prodQtyLblDiv prodQtyDiv"
+			"addCartBtnDiv addCartBtnDiv" "prodSrchDiv prodSrchDiv";
+	}
+	.prodImageDiv {
+		padding-left: 20px;
+		grid-area: prodImageDiv;
+	}
+	.prodPriceDiv {
+		grid-area: prodPriceDiv;
+		text-align: center;
+	}
+	.prodSizeDiv {
+		grid-area: prodSizeDiv;
+		text-align: center;
+	}
+	.prodQtyLblDiv {
+		grid-area: prodQtyLblDiv;
+		text-align: right;
+   		padding-right: 34px;
+	}
+	.prodQtyLblSpan{
+		position: absolute;padding-top: 20.2px;
+	}
+	.addCartBtnDiv {
+		grid-area: addCartBtnDiv;
+		padding-left: 20%;
+    	padding-right: 20%;
+	}
+	.prodQtyDiv {
+		grid-area: prodQtyDiv;
+		padding-right: 62%;
+	}
+	.prodSrchDiv {
+		grid-area: prodSrchDiv;
+	}
+	.prodNameDiv {
+		grid-area: prodNameDiv;
+		font-weight: bolder;
+	}
+	.prodPanel {
+		height: 400px;
+		position: relative;
+	}
+}
+
+@media screen and (max-width: 735px) {
+	.cartImage {
+		height: 82px;
+		width: 90px;
+		background-color: #1d1d1d
+	}
+	.prodImageDiv {
+		height: 170px;
+		width: 170px;
+	}
+	.cartItems {
+		grid-area: cartItems;
+		font-size: .9rem;
+		color: #f6f6f6;
+		position: absolute;
+		top: .8%;
+		right: 30px;
+		height: 22px;
+		width: 22px;
+		background: #f8631a;
+		text-align: center;
+		border-radius: 50%;
+		line-height: 1.5rem;
+		border: 1px solid #fff;
+	}
+	body {
+		background-color: pink;
+	}
+	.grid div:nth-child(even) {
+		background-color: #1d1d1d;
+	}
+	.grid div:nth-child(odd) {
+		background-color: #1d1d1d;
+	}
+	.grid {
+		display: grid;
+		justify-content: space-between;
+		grid-template-columns:20% 20% 20%;
+		grid-template-rows: 1fr 1fr;
+		grid-template-areas: "homeButton account cart"
+			"offerBanner offerBanner offerBanner";
+		
+	}
+	.homeButton {
+		grid-area: homeButton;
+	}
+	.account {
+		grid-area: account;
+	}
+	.cart {
+		grid-area: cart;
+	}
+	.offerBanner {
+		grid-area: offerBanner;
+	}
+	
+	
+	.allProdGrid {
+		display: grid;
+		grid-template-columns: 40% 60%;
+		grid-template-rows: 183px 47px 25px 25px 57px 50px;
+		grid-template-areas: "prodImageDiv prodImageDiv"
+			"prodNameDiv prodNameDiv" "prodPriceDiv prodPriceDiv"
+			"prodSizeDiv prodSizeDiv" "prodQtyLblDiv prodQtyDiv"
+			"addCartBtnDiv addCartBtnDiv" "prodSrchDiv prodSrchDiv";
+	}
+	.prodImageDiv {
+		grid-area: prodImageDiv;
+	}
+	.prodPriceDiv {
+		grid-area: prodPriceDiv;
+		text-align: left;
+	}
+	.prodSizeDiv {
+		grid-area: prodSizeDiv;
+		text-align: left;
+	}
+	.prodQtyLblDiv {
+		grid-area: prodQtyLblDiv;
+		text-align: center;
+	}
+	.addCartBtnDiv {
+		grid-area: addCartBtnDiv;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.prodQtyDiv {
+		grid-area: prodQtyDiv;
+		padding-right: 51px;
+	}
+	.prodSrchDiv {
+		grid-area: prodSrchDiv;
+	}
+	.prodNameDiv {
+		grid-area: prodNameDiv;
+		font-weight: bolder;
+	}
+	.prodPanel {
+		height: 400px;
+		position: relative;
+	}
+}
+</style>
+</h:head>
+
+<h:body>
+	<pm:page id="productListing">
+		<div class="grid">
+
+			<ui:insert name="homeBar">
+
+				<!-- <pm:header swatch="b"> -->
+				<!-- <p:panelGrid columns="3" style="margin-top: 7px; float:auto"> -->
+				<div class="homeButton">
+					<p:commandButton
+						style="height: 70px;
+    				width: 90px;
+    				font-size: 12.5px;
+    				float: left;
+   					background-color: cadetblue;
+   					font-size:12.5px;"
+						value="Home" icon="ui-icon-home" iconPos="bottom"
+						action="allProducts.xhtml?faces-redirect=true"></p:commandButton>
+				</div>
+				<div class="offerBanner">BANNER HERE</div>
+				<div class="account">
+					<p:commandButton
+						style="height: 70px;
+    				width: 90px;
+    				font-size: 12.5px;
+    				float: left;
+   					background-color: cadetblue;
+   					font-size:12.5px;
+   					float:centre;"
+						value="Account" iconPos="bottom"
+						action="#{actions.customerProfile}"></p:commandButton>
+				</div>
+				<div class="cart">
+					<span class="cartItems">#{cart.cartProdList.size()}</span>
+
+					<p:commandLink
+						style="height: 70px;
+    				width: 90px;
+    				font-size: 12.5px;
+    				position:relative
+    				float: right;
+   					background-color: cadetblue;
+   					font-size:12.5px;
+   					float:right;"
+						action="cart.xhtml?faces-redirect=true">
+						<h:graphicImage class="cartImage"
+							name="images/icons/cart-icon2.png"></h:graphicImage>
+
+						<!-- <b class="fa fa-shopping-cart" style="font-size: 64.5px;"></b> -->
+					</p:commandLink>
+				</div>
+				<!-- </p:panelGrid> -->
+
+				<!-- </pm:header> -->
+
+			</ui:insert>
+		</div>
+		<!-- <div style="width:74%;background-color: green ;align:centre; border: 25px solid blue;padding-left: 0px;
+    margin: 25px;"> -->
+		<ui:insert name="defaultHeader">
+			<pm:header title="">
+				<pm:content style="align:centre">#{lbl['header']}</pm:content>
+			</pm:header>
+		</ui:insert>
+		<ui:insert name="defaultBody">
+			<pm:content>
+	Sorry! Nothing to show
+	</pm:content>
+		</ui:insert>
+		<ui:insert name="defaultFooter">
+
+			<pm:footer title="Footer"></pm:footer>
+		</ui:insert>
+		<!-- </div> -->
+
+		<ui:insert name="cartBody">
+
+			<pm:content>
+	Sorry! Nothing to show
+	</pm:content>
+			<p:button outcome="pm:productListing" value="Back"
+				icon="ui-icon-arrow-l" styleClass="ui-btn-left ui-btn-inline" />
+
+		</ui:insert>
+	</pm:page>
+	<!-- 	<pm:page id="cartPage">-->
+	<!-- <ui:insert name="cartBody">
+
+			<pm:content>
+	Sorry! Nothing to show
+	</pm:content>
+			<p:button outcome="pm:productListing" value="Back"
+				icon="ui-icon-arrow-l" styleClass="ui-btn-left ui-btn-inline" />
+
+		</ui:insert> -->
+
+	<!-- </pm:page> -->
+
+</h:body>
+
+
+</html>

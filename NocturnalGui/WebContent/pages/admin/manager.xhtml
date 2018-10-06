@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<pm:page>
+	<h:form>
+	<p:outputLabel for="productId" value="#{productLbl['productId']}"></p:outputLabel>
+	<p:inputText id="productId" value="#{guiProduct.productId}"></p:inputText>
+	
+	<p:outputLabel for="category" value="#{productLbl['category']}"></p:outputLabel>
+	<p:inputText id="category"  value="#{guiProduct.productCategory}"></p:inputText>
+	
+	<p:outputLabel for="brand" value="#{productLbl['brand']}"></p:outputLabel>
+	<p:inputText id="brand" value="#{guiProduct.productBrand}"></p:inputText>
+	
+	<p:outputLabel for="productName" value="#{productLbl['productName']}"></p:outputLabel>
+	<p:inputText id="productName"  value="#{guiProduct.productName}"></p:inputText>
+	
+	<p:outputLabel for="productSize" value="#{productLbl['productSize']}"></p:outputLabel>
+	<p:inputText id="productSize"  value="#{guiProduct.productSize}"></p:inputText>
+	
+	<p:outputLabel for="price" value="#{productLbl['price']}"></p:outputLabel>
+	<p:inputText id="price" value="#{guiProduct.productPrice}"></p:inputText>
+	
+	<p:outputLabel for="quantity" value="#{productLbl['quantity']}"></p:outputLabel>
+	<p:inputText id="quantity" value="#{guiProduct.productQuantity}"></p:inputText>
+	
+	<p:outputLabel for="imageName" value="#{productLbl['imageName']}"></p:outputLabel>
+	<p:inputText id="imageName"  value="#{guiProduct.imageName}"></p:inputText>
+	
+	<p:commandButton value="#{lbl['addProd']}" actionListener="#{actions.saveProduct}"></p:commandButton>
+	
+	</h:form>
+	</pm:page>
+</h:body>
+
+</html>

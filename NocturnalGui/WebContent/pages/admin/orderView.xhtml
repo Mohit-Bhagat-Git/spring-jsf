@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+		<h:form>
+			<p:inputText value="#{guiOrder.orderId}"></p:inputText>
+
+			<p:commandButton action="#{orderView.search}" update="@form orderPanel">
+			</p:commandButton>
+
+		</h:form>
+		<h:form id="orderViewForm">
+			<p:growl id="addProdGrowl"></p:growl>
+			<p:growl id="msgs" showDetail="true" />
+
+			<div>
+				<p:panel id="orderPanel">
+					<div>
+						<p:dataTable id="orderTable" value="#{orderView.ordersList}"
+							editable="true" var="o"
+							style="margin-bottom:20px">
+							<f:facet name="header">
+       						     List of Orders
+      						</f:facet>
+      						
+							<p:column>
+
+								<f:facet name="header">Order No</f:facet>
+
+								<p:inputText value="#{o.orderId}" size="10"
+									rendered="#{o.editable}" />
+							
+								<p:outputLabel value="#{o.orderId}" rendered="#{not o.editable}" />
+
+							</p:column>
+
+							<p:column>
+
+								<f:facet name="header">Product Name</f:facet>
+
+								<p:inputText value="#{o.orderDateTime}" size="20"
+									rendered="#{o.editable}" />
+
+								<p:outputLabel value="#{o.orderDateTime}"
+									rendered="#{not o.editable}" />
+
+							</p:column>
+
+							<p:column>
+
+								<f:facet name="header">Price</f:facet>
+
+								<p:inputText value="#{o.amountToPay}" size="10"
+									rendered="#{o.editable}" />
+
+								<p:outputLabel value="#{o.amountToPay}" rendered="#{not o.editable}" />
+
+							</p:column>
+
+							<p:column>
+
+								<f:facet name="header">Quantity</f:facet>
+
+								<p:inputText value="#{o.orderStatus}" size="5" rendered="#{o.editable}" />
+
+								<p:outputLabel value="#{o.orderStatus}" rendered="#{not o.editable}" />
+
+							</p:column>
+
+							<p:column>
+
+								<f:facet name="header">Quantity</f:facet>
+
+								<p:inputText value="#{o.orderCompletionTime}" size="5" rendered="#{o.editable}" />
+
+								<p:outputLabel value="#{o.orderCompletionTime}" rendered="#{not o.editable}" />
+
+							</p:column>
+							
+							<p:column>
+
+								<f:facet name="header">Action</f:facet>
+								
+								<h:commandLink value="Edit" action="#{orderView.editAction(o)}"
+									rendered="#{not o.editable}" />
+								<!-- <h:commandLink value="Save" action="#{orderView.saveAction(o)}"
+									rendered="#{o.editable}" />
+								<h:commandLink value="Cancel" action="#{orderView.cancelAction(o)}"
+									rendered="#{o.editable}" /> -->
+									
+							</p:column>
+
+						</p:dataTable>
+						
+					</div>
+				</p:panel>
+				<p:commandButton actionListener="#{orderView.saveAction}">
+			</p:commandButton>
+			</div>
+			
+		</h:form>
+
+</h:body>
+
+</html>

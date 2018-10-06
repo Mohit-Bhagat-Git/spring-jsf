@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<ui:composition template="/templates/header_footer.xhtml">
+	<ui:define name="defaultHeader"></ui:define>
+	<!-- <ui:define name="homeBar">
+		<pm:header swatch="b">
+			<p:panelGrid columns="2" style="margin-top: 7px;">
+				<p:commandButton action="allProducts.xhtml?faces-redirect=true" value="Back"
+					icon="ui-icon-arrow-l" styleClass="ui-btn-left ui-btn-inline" 
+					style="margin-top: 11px;"/>
+				<p:commandButton
+					style="height: 70px;
+    				width: 90px;
+    				font-size: 12.5px;
+    				float: left;
+   					background-color: cadetblue;
+   					font-size:12.5px;
+   					float:left"
+					value="Home" icon="ui-icon-home" iconPos="bottom" 
+					action="allProducts.xhtml?faces-redirect=true"/>
+				<p:commandButton style="height: 70px;
+    				width: 90px;
+    				font-size: 12.5px;
+    				float: left;
+   					background-color: cadetblue;
+   					font-size:12.5px;
+   					float:right;"
+					value="Account" styleClass="shopping-cart" iconPos="bottom"
+					action="#{actions.customerProfile}"/>
+
+			</p:panelGrid>
+
+
+		</pm:header>
+	</ui:define> -->
+	<ui:define name="defaultBody"></ui:define>
+	<ui:define name="defaultFooter"></ui:define>
+	<ui:define name="cartBody">
+		<div>
+			<h:form id="cartForm">
+				<p:dataGrid id="cartProd" var="selProd"
+					value="#{cart.cartProdList}" columns="1" paginator="true"
+					rows="10">
+					<div id="line">
+						<p:panel header="#{selProd.productName}">
+							<p:panelGrid columns="1" style="width:100%">
+								<p:graphicImage style="height:250px;width:240px;"
+									name="images/#{selProd.productCategory}/#{selProd.productId}.img" />
+								<h:outputText value="#{selProd.productName}" />
+
+								<h:inputText value="#{selProd.productQuantity}"></h:inputText>
+								<p:commandButton value="Change"
+									actionListener="#{actions.saveCurrProdQuantity(selProd)}"></p:commandButton>
+								<p:commandButton value="Delete"
+									actionListener="#{actions.removeFromCart(selProd)}"></p:commandButton>
+
+							</p:panelGrid>
+						</p:panel>
+					</div>
+				</p:dataGrid>
+			</h:form>
+		</div>
+		<div>
+			<h:form id="billSummary">
+
+
+				<p:commandButton value="Place Order"
+					action="#{actions.orderProceed}">
+
+				</p:commandButton>
+
+			</h:form>
+		</div>
+	</ui:define>
+
+</ui:composition>
+
+</html>

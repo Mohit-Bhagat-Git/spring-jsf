@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+>
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+	<pm:page id="orderReview">
+	<p:growl id="msg"></p:growl>
+		<pm:header title="ORDER REVIEW" swatch="b">
+			<p:button outcome="cart.xhtml?faces-redirect=true" value="Back"
+				icon="ui-icon-arrow-l" styleClass="ui-btn-left ui-btn-inline" />
+		</pm:header>
+		<pm:content>
+			<h:form id="orderReviewForm">
+				<p:growl id="orderConfirmGrowl"></p:growl>
+				<ui:param name="orderAddr"
+					value="#{customerDetails.deliveryAddress}" />
+				<p:panel header="Deliver To">
+					<p:column headerText="Your delivery Address">
+						<h:outputText value="#{orderAddr.pinCode}" />
+						<br />
+						<h:outputText value="#{orderAddr.completeAddress}" />
+						<br />
+
+						<h:outputText value="#{orderAddr.locality}" />
+						<br />
+						<h:outputText value="#{orderAddr.city}" />
+						<br />
+						<h:outputText value="#{orderAddr.state}" />
+						<br />
+					</p:column>
+				</p:panel>
+
+				<p:dataGrid id="cartProd" var="selProd" value="#{cart.cartProdList}"
+					 rows="10">
+					<div id="line">
+						<p:panel header="#{selProd.productName}" footer="hellp"> 
+							<p:panelGrid columns="3" style="width:100%">
+								<p:column>
+									<p:graphicImage style="height:100px;width:86px;"
+										name="images/#{selProd.productCategory}/#{selProd.productId}.img" />
+									<h:outputText value="#{selProd.productName}" />
+								</p:column>
+									
+								<p:column>
+									<h:inputText value="#{selProd.productQuantity}"></h:inputText>
+								
+									<p:commandButton value="Change"
+										actionListener="#{actions.addToCart(selProd)}" update="@form"></p:commandButton>
+								</p:column>
+								<p:column>
+									<p:outputLabel id="subTotal" value="x ₹#{selProd.productPrice}" ></p:outputLabel>
+									<p:commandButton value="Delete"
+										actionListener="#{actions.removeFromCart(selProd)}" ></p:commandButton>
+								</p:column>
+								<p:outputLabel value="#{selProd.productPrice * selProd.productQuantity}"></p:outputLabel> 
+							</p:panelGrid>
+						</p:panel>
+					</div>
+				</p:dataGrid>
+				<p:panel  id="orderConfirmPanel" header="Amount to Pay">
+				
+				<p:outputLabel value="Total Item(s): #{cart.cartProdList.size()} "></p:outputLabel>
+				<p:outputLabel value="Total Amount:  #{cart.cartTotalPrice}"></p:outputLabel>
+				<p:commandButton value="Place Order" actionListener="#{actions.orderConfirm}" update="orderConfirmGrowl"> </p:commandButton>
+				
+				</p:panel>
+				</h:form>
+		</pm:content>
+	</pm:page>
+
+
+
+</h:body>
+
+</html>
